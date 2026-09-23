@@ -1,0 +1,72 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    // ===== DATA AWAL =====
+    int jumlahSoal;
+    int jumlahBenar, jumlahSalah, jumlahKosong;
+    int bobotBenar = 5;      // bobot nilai per soal benar
+    int passingGrade = 60;   // nilai ambang batas kelulusan
+
+    // ===== KONDISI AWAL =====
+    // Skor mulai dari 0, belum ada jawaban yang diinput
+    int skorAkhir = 0;
+    string status = "";
+
+    cout << "=== PROGRAM MENGHITUNG NILAI AKHIR UJIAN CBT ===" << endl;
+    cout << endl;
+
+    cout << "Masukkan jumlah soal ujian: ";
+    cin >> jumlahSoal;
+
+    cout << "Masukkan jumlah jawaban benar: ";
+    cin >> jumlahBenar;
+
+    cout << "Masukkan jumlah jawaban salah: ";
+    cin >> jumlahSalah;
+
+    cout << "Masukkan jumlah jawaban kosong: ";
+    cin >> jumlahKosong;
+
+    cout << endl;
+
+    // ===== SYARAT ATAU KENDALA =====
+    // Total jawaban tidak boleh melebihi jumlah soal
+    // Input tidak boleh berupa angka negatif
+    if (jumlahBenar < 0 || jumlahSalah < 0 || jumlahKosong < 0) {
+        cout << "Input tidak valid! Jumlah jawaban tidak boleh negatif." << endl;
+    }
+    else if ((jumlahBenar + jumlahSalah + jumlahKosong) > jumlahSoal) {
+        cout << "Input tidak valid! Total jawaban melebihi jumlah soal." << endl;
+    }
+    else {
+        // ===== OPERATOR ARITMATIKA =====
+        // Skor akhir = jumlah benar x bobot nilai per soal benar
+        skorAkhir = jumlahBenar * bobotBenar;
+
+        // Skor akhir tidak boleh negatif
+        if (skorAkhir < 0) {
+            skorAkhir = 0;
+        }
+
+        // ===== KONDISI AKHIR =====
+        // Menentukan status kelulusan berdasarkan passing grade
+        if (skorAkhir >= passingGrade) {
+            status = "LULUS";
+        } else {
+            status = "TIDAK LULUS";
+        }
+
+        // ===== HASIL AKHIR =====
+        cout << "===== HASIL PERHITUNGAN =====" << endl;
+        cout << "Jumlah Soal      : " << jumlahSoal << endl;
+        cout << "Jawaban Benar    : " << jumlahBenar << endl;
+        cout << "Jawaban Salah    : " << jumlahSalah << endl;
+        cout << "Jawaban Kosong   : " << jumlahKosong << endl;
+        cout << "Passing Grade    : " << passingGrade << endl;
+        cout << "Skor Akhir       : " << skorAkhir << endl;
+        cout << "Status Kelulusan : " << status << endl;
+    }
+
+    return 0;
+}
